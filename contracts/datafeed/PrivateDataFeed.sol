@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
-import "./interfaces/IDataFeed.sol";
+import "../interfaces/IDataFeed.sol";
 
 contract PrivateDataFeed is IDataFeed, Context, AccessControlEnumerable {
   bytes32 public constant PUBLISHER_ROLE = keccak256("PUBLISHER_ROLE");
@@ -16,11 +16,11 @@ contract PrivateDataFeed is IDataFeed, Context, AccessControlEnumerable {
     _setupRole(PUBLISHER_ROLE, _msgSender());
   }
 
-  function data(uint256 _key) onlyRole(SUBSCRIBER_ROLE) external override returns (bytes32) {
+  function data(uint256 _key) onlyRole(SUBSCRIBER_ROLE) external view override returns (bytes32) {
     return _data[_key];
   }
 
   function publish(uint256 _key, bytes32 _value) onlyRole(PUBLISHER_ROLE) external {
-    data[_key] = _value;
+    _data[_key] = _value;
   }
 }

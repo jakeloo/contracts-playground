@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
-import "./interfaces/IDataFeed.sol";
+import "../interfaces/IDataFeed.sol";
 
 contract PublicDataFeed is IDataFeed, Context, AccessControlEnumerable {
   bytes32 public constant PUBLISHER_ROLE = keccak256("PUBLISHER_ROLE");

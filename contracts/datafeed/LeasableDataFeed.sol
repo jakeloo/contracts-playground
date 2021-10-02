@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
-import "./interfaces/IDataFeed.sol";
+import "../interfaces/IDataFeed.sol";
 
 contract LeasableDataFeed is IDataFeed, Context, AccessControlEnumerable {
   bytes32 public constant TREASURER_ROLE = keccak256("TREASURER_ROLE");
@@ -25,7 +25,7 @@ contract LeasableDataFeed is IDataFeed, Context, AccessControlEnumerable {
   }
 
   function publish(uint256 _key, bytes32 _value) onlyRole(PUBLISHER_ROLE) external {
-    data[_key] = _value;
+    _data[_key] = _value;
   }
 
   function lease(address to, uint256 numberOfDays) payable external {

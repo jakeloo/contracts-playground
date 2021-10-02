@@ -1,8 +1,8 @@
-import "@nomiclabs/hardhat-ethers";
-import "@nomiclabs/hardhat-etherscan";
-import "hardhat-deploy";
-import "hardhat-deploy-ethers";
-import "hardhat-gas-reporter";
+//import "@nomiclabs/hardhat-ethers";
+//import "@nomiclabs/hardhat-etherscan";
+//import "hardhat-deploy";
+//import "hardhat-deploy-ethers";
+//import "hardhat-gas-reporter";
 
 require("dotenv").config();
 
@@ -18,7 +18,7 @@ const config = {
     deployer: 0,
   },
   paths: {
-    sources: "src",
+    sources: "contracts",
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
