@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
 import "./interfaces/IDataFeed.sol";
 
-contract DataFeed is IDataFeed, Context, AccessControlEnumerable {
+contract PublicDataFeed is IDataFeed, Context, AccessControlEnumerable {
   bytes32 public constant PUBLISHER_ROLE = keccak256("PUBLISHER_ROLE");
 
   mapping(uint256 => bytes32) public override data;
