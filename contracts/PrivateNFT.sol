@@ -4,20 +4,16 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "./interfaces/IDataFeed.sol";
 
 contract PrivateNFT is Context, ERC721 {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIdTracker;
 
-  IDataFeed public immutable feed;
-
   /* tokenId => state => uri */
   mapping(uint256 => string) private _uris;
   mapping(uint256 => mapping(address => bool)) private _lease;
 
-  constructor(address _feed) ERC721("Dynamic", "DNFT") {
-    feed = IDataFeed(_feed);
+  constructor() ERC721("Private", "PNFT") {
   }
 
   function mint(string calldata uri) external {
