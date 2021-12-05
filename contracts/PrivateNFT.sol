@@ -29,7 +29,9 @@ contract PrivateNFT is Context, ERC721 {
     return _uris[tokenId];
   }
 
+  // lease doesn't get reset on token transfer.
   function lease(address to, uint256 tokenId) external {
+    require(ownerOf(tokenId) == msg.sender, "not token owner");
     _lease[tokenId][to] = true;
   }
 }

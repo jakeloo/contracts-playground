@@ -7,7 +7,7 @@ import "hardhat-gas-reporter";
 require("dotenv").config();
 
 const config = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
   networks: {
     rinkeby: {
       url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_KEY}`,
