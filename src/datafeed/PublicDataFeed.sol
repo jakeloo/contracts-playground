@@ -14,7 +14,7 @@ contract PublicDataFeed is IDataFeed, Context, AccessControlEnumerable {
     _setupRole(PUBLISHER_ROLE, _msgSender());
   }
 
-  function publish(uint256 _key, bytes32 _value) onlyRole(PUBLISHER_ROLE) external {
+  function publish(uint256 _key, bytes32 _value) external onlyRole(PUBLISHER_ROLE) {
     data[_key] = _value;
   }
 }

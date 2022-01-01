@@ -13,8 +13,7 @@ contract PrivateNFT is Context, ERC721 {
   mapping(uint256 => string) private _uris;
   mapping(uint256 => mapping(address => bool)) private _lease;
 
-  constructor() ERC721("Private", "PNFT") {
-  }
+  constructor() ERC721("Private", "PNFT") {}
 
   function mint(string calldata uri) external {
     uint256 currentTokenId = _tokenIdTracker.current();

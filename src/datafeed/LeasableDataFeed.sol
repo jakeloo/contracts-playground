@@ -19,16 +19,16 @@ contract LeasableDataFeed is IDataFeed, Context, AccessControlEnumerable {
     _setupRole(PUBLISHER_ROLE, _msgSender());
   }
 
-  function data(uint256 _key) external override view returns (bytes32) {
+  function data(uint256 _key) external view override returns (bytes32) {
     require(block.timestamp < _leaseExpiration[_msgSender()], "does not have a valid lease");
     return _data[_key];
   }
 
-  function publish(uint256 _key, bytes32 _value) onlyRole(PUBLISHER_ROLE) external {
+  function publish(uint256 _key, bytes32 _value) external onlyRole(PUBLISHER_ROLE) {
     _data[_key] = _value;
   }
 
-  function lease(address to, uint256 numberOfDays) payable external {
+  function lease(address to, uint256 numberOfDays) external payable {
     require(msg.value == (numberOfDays * leasePricePerDay), "msg.value != total price");
 
     uint256 startAt = block.timestamp;
@@ -42,9 +42,9 @@ contract LeasableDataFeed is IDataFeed, Context, AccessControlEnumerable {
     }
   }
 
-  function withdraw() onlyRole(TREASURER_ROLE) external {
+  function withdraw() external onlyRole(TREASURER_ROLE) {
     // get the amount of Ether stored in this contract
-    uint amount = address(this).balance;
+    uint256 amount = address(this).balance;
     (bool success, ) = _msgSender().call{value: amount}("");
     require(success, "Failed to send Ether");
   }
