@@ -62,8 +62,8 @@ contract MultiNFT is ERC721 {
     IERC721(info.assetContract).transferFrom(address(this), msg.sender, info.tokenId);
   }
 
-  function submitApproval(uint256 tokenId) external {
-    approvals[tokenId][msg.sender] = true;
+  function unwrapApproval(uint256 tokenId, bool approval) external {
+    approvals[tokenId][msg.sender] = approval;
   }
 
   function _beforeTokenTransfer(
