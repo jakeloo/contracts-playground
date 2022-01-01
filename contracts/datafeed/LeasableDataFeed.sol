@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
-import "../interfaces/IDataFeed.sol";
+import "./IDataFeed.sol";
 
 contract LeasableDataFeed is IDataFeed, Context, AccessControlEnumerable {
   bytes32 public constant TREASURER_ROLE = keccak256("TREASURER_ROLE");
